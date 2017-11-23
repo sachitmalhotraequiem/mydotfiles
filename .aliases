@@ -1,0 +1,14 @@
+push_to_origin_current_branch() {
+    git push origin $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/')
+}
+
+pull_from_origin_current_branch() {
+    git pull origin $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/')
+}
+
+alias gpulc="pull_from_origin_current_branch"
+alias gpusc="push_to_origin_current_branch"
+alias art="php /Users/sachit/equiem-fsm/src/artisan"
+alias art-q="cd /Users/sachit/equiem-fsm/src && php artisan queue:listen --tries=1"
+alias art-log="tail -f /Users/sachit/equiem-fsm/src/storage/logs/laravel.log"
+alias art-serve="cd /Users/sachit/Homestead && vagrant up && browser-sync start --proxy 'fsm.dev.app' --open='external' --host="fsm.app" --files '/Users/sachit/equiem-fsm/src/resources'"

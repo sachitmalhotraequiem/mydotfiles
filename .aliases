@@ -12,3 +12,31 @@ alias art="php /Users/sachit/equiem-fsm/src/artisan"
 alias art-q="cd /Users/sachit/equiem-fsm/src && php artisan queue:listen --tries=1"
 alias art-log="tail -f /Users/sachit/equiem-fsm/src/storage/logs/laravel.log"
 alias art-serve="cd /Users/sachit/Homestead && vagrant up && browser-sync start --proxy 'fsm.dev.app' --open='external' --host="fsm.app" --files '/Users/sachit/equiem-fsm/src/resources'"
+alias c="clear"
+alias dcc="docker ps -a | awk '{print $1}' | grep -v CONTAINER | xargs docker rm"
+alias dci="docker images | awk '{print $3}' | grep -v IMAGE | xargs docker rmi"
+alias dd="/Users/sachit/equiem-fsm/docker-dev"
+alias irisc="cd /Users/sachit/Desktop/workspace/iris && bin/docker-compose exec client"
+alias irisa="cd /Users/sachit/Desktop/workspace/iris && bin/docker-compose exec api"
+alias iris="cd /Users/sachit/Desktop/workspace/iris && bin/docker-compose"
+alias lintrb="irisa bundle exec rubocop"
+alias iristb="irisa rails spec"
+alias irisconsole="irisa rails console"
+alias iris-seed="irisa rails db:create db:migrate db:seed"
+alias ilint="irisc yarn lint"
+alias itest="irisc yarn test"
+alias g="git"
+alias co="git checkout"
+alias cm="git commit -m {$1}"
+alias portal-sync="irisa rake portal:sync"
+alias rc="irisa rails console"
+alias irisa-lint="irisa bundle exec rubocop"
+
+if which docker &> /dev/null; then
+  alias docker-cleanup-images="docker images | grep '<none>' | awk '{ print \$3 }' | xargs docker rmi"
+  alias docker-cleanup-volumes="docker volume prune -f"
+  function docker-cleanup {
+    docker-cleanup-images
+    docker-cleanup-volumes
+  }
+fi
